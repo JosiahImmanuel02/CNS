@@ -11,13 +11,6 @@ To encrypt a message with a Caesar cipher, each letter in the message is changed
 alphabet as a circle and "wrap around". W becomes Z, X becomes A, Y bec mes B, and Z
 becomes C. To change a message back, each letter is replaced by the one three before it.
 
-## EXAMPLE:
-
-
-
-![image](https://github.com/Hemamanigandan/CNS/assets/149653568/eb9c6c43-8c80-4cdd-b9d4-91705a311c79)
-
-
 ## ALGORITHM:
 
 ### STEP-1: Read the plain text from the user.
@@ -27,8 +20,64 @@ becomes C. To change a message back, each letter is replaced by the one three be
 ### STEP-5: Display the cipher text obtained above.
 
 
-PROGRAM :-
+## PROGRAM :-
+```
+```c
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char plain[100], cipher[100];
+    int key, i, length;
+
+    printf("Enter the plain text: ");
+    scanf("%s", plain);
+
+    printf("Enter the key value: ");
+    scanf("%d", &key);
+
+    printf("\nPLAIN TEXT: %s", plain);
+    printf("\nENCRYPTED TEXT: ");
+
+    length = strlen(plain);
+    for (i = 0; i < length; i++) {
+        cipher[i] = plain[i] + key;
+        if (isupper(plain[i]) && cipher[i] > 'Z') {
+            cipher[i] -= 26;
+        }
+        if (islower(plain[i]) && cipher[i] > 'z') {
+            cipher[i] -= 26;
+        }
+        printf("%c", cipher[i]);
+    }
+
+    cipher[length] = '\0';
+
+    printf("\nDECRYPTED TEXT: ");
+    for (i = 0; i < length; i++) {
+        plain[i] = cipher[i] - key;
+        if (isupper(cipher[i]) && plain[i] < 'A') {
+            plain[i] += 26;
+        }
+        if (islower(cipher[i]) && plain[i] < 'a') {
+            plain[i] += 26;
+        }
+        printf("%c", plain[i]);
+    }
+
+    plain[length] = '\0';
+
+    return 0;
+}
+```
 
 
 
-OUTPUT :-
+## OUTPUT :-
+
+![Screenshot 2025-03-19 090622](https://github.com/user-attachments/assets/b9c00bb8-c6eb-4d78-966c-83e3db1ecb4d)
+
+## Result
+
+The program is executed successfully
